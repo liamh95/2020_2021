@@ -1,0 +1,117 @@
+\documentclass{beamer}
+\usepackage{amssymb,amsfonts,color,graphicx,amsmath,enumerate,mathtools}
+\usepackage{tikz} %This package offers the ability to draw pictures
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+
+\theoremstyle{plain}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{exercises}[theorem]{Exercises}
+\newcommand{\Bin}{\ensuremath{\textrm{Bin}}}
+\newcommand{\Bern}{\text{Bern}}
+
+
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\exreals}{\overline{\mathbb{R}}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\mable}{measurable}
+\newcommand{\quats}{\mathbb{H}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\norm}{\trianglelefteq}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\disk}{\mathbb{D}}
+\newcommand{\halfplane}{\mathbb{H}}
+\newcommand{\Lp}[2]{\left\|{#1}\right\|_{L^{#2}}}
+\newcommand{\supp}[1]{\text{supp}({#1})}
+\newcommand{\Hom}[2]{\text{Hom}_{{#1}}({#2})}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\field}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\Gal}[1]{\text{Gal}\left({#1}\right)}
+\newcommand{\esssup}{\text{ess sup }}
+\newcommand{\essinf}{\text{ess inf }}
+\newcommand{\affine}{\mathbb{A}}
+
+
+\title{Finding and Counting Substructures in Graphs and Hypergraphs}
+\author{Liam Hardiman}
+\date{December 10, 2020}
+
+\usetheme{Frankfurt}
+
+\AtBeginSection[]{
+	\begin{frame}<beamer>
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\begin{document}
+
+\maketitle
+
+% Roadmap
+% Definitions
+% Random Graphs Paper
+%   Background - Dirac, Gallai, Scott
+%   Big induced graph
+%   Packing
+% Hamiltonian Cycles
+%   Dirac's theorem in graphs
+%   How many ham cycles in graphs
+%   How2cycle in a hypergraph
+%   counting in hypergraphs
+
+
+\section{A Finding Problem}
+	\begin{frame}{Quick Definitions}
+		\begin{itemize}
+			\item A \textbf{graph} $G = (V, E)$ consists of a (finite) set of \textbf{vertices} $V$ and a set $E$ of unordered pairs of vertices called \textbf{edges}.\pause
+
+			\item If $X\subseteq V$, then the \textbf{subgraph induced by $X$}, $G[X]$ is the graph with vertex set $X$ and all edges from $E$ that have both ends in $X$.\pause
+
+			\item The \textbf{degree} of a vertex $v$, denoted $d_G(v)$, is the number of edges of $G$ that $v$ appears in.\pause
+
+			\item picture here
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{History and Motivation}
+		\begin{theorem}[L. Lov\'asz, T. Gallai - 1979]
+			Let $G = (V, E)$ be any graph.
+			Then $G$ admits a partitioning of its vertex set into two parts, $V = V_1 \cup V_2$, so that each vertex in $G[V_1]$ and each vertex in $G[V_2]$ has even degree.
+			In particular, any graph on $n$ vertices has an even subgraph of order at least $n/2$.
+		\end{theorem}\pause
+
+		\begin{proof}[Proof sketch:]
+			asdf
+		\end{proof}
+	\end{frame}
+
+
+	\begin{frame}{History and Motivation}
+		\begin{itemize}
+			\item What about odd subgraphs?\pause
+
+			\begin{theorem}[A. Scott - 1992]
+				Every graph $G(V, E)$ on $n$ vertices, none of which are isolated, contains a set $W\subseteq V(G)$ such that $|W|\geq \frac{n}{900 \log n}$ and $G[W]$ has all degrees odd.
+			\end{theorem}\pause
+
+			\begin{conjecture}[A. Scott - 2001]
+				There exists some constant $c>0$ such that every graph $G(V, E)$ on $n$ vertices, none of which are isolated, contains a set $W\subseteq V(G)$ such that $|W|\geq cn$ and $G[W]$ has all degrees odd.
+			\end{conjecture}
+
+		\end{itemize}
+	\end{frame}
+
+
+\end{document}

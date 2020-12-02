@@ -1,0 +1,73 @@
+\documentclass[11pt,letterpaper]{report}
+\usepackage{amssymb,amsfonts,color,graphicx,amsmath,enumerate}
+\usepackage{amsthm}
+
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\Cov}{\text{Cov}}
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+\voffset=-3cm
+\hoffset=-2.25cm
+\textheight=24cm
+\textwidth=17.25cm
+\addtolength{\jot}{8pt}
+\linespread{1.3}
+
+\begin{document}
+\begin{center}
+{\bf \Large Math 205A - Week 2}
+\vspace{0.2cm}
+\hrule
+\end{center}
+
+\begin{enumerate}
+	\item Can you find two different sequences $(a_n)$ and $(b_n)$ that are subsequences of one another?
+
+	\vfill
+
+	\item Suppose $f:\reals\to \reals$ is continuous and satisfies
+	\[
+	\lim_{h\to 0}[f(x+h)-f(x-h)] = 0
+	\]
+	for every $x\in \reals$. Does this imply that $f$ is continuous?
+
+	\vfill
+
+	\item Suppose that $f: \reals\to \reals$ satisfies the functional equation
+	\[
+	f(u+v) = f(u)+f(v)\quad\text{for all}\quad u,v\in \reals.
+	\]
+	\begin{enumerate}
+		\item Prove that $f(mx) = mf(x)$ for all $x\in \reals$ and $m\in \integers$.
+		\item Prove that $f(x) = cx$ for all $x\in \rationals$ where $c=f(1)$.
+		\item Deduce that if $f$ is continuous on $\reals$, then $f(x) = cx$ for all $x\in \reals$.
+	\end{enumerate}
+
+	\vfill
+
+	\item Prove that a countable, closed and bounded subset of $\reals$ cannot be perfect. \textit{Hint: Suppose $X = \{x_1, x_2, \ldots\}$ and find a decreasing family $X_n$ of closed nonempty subsets of $X$ with $x_n\notin X_n$.}
+
+	\vfill
+	
+
+	
+
+	\item Let $E\subseteq \reals$ be uncountable. Prove that there exists an $x$ in $\reals$ such that $E\cap (-\infty, x)$ and $E\cap (x, \infty)$ are both uncountable.
+
+	\vfill
+\end{enumerate}
+
+
+
+\end{document}
