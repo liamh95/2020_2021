@@ -1,1 +1,3 @@
 \beamer@sectionintoc {1}{A Finding Problem}{2}{0}{1}
+\beamer@sectionintoc {2}{A Counting Problem}{42}{0}{2}
+\beamer@sectionintoc {3}{Another Counting Problem}{50}{0}{3}

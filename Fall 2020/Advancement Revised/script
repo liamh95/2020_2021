@@ -1,0 +1,550 @@
+Good morning. Today I'm going to talk about some projects I've been working on with Asaf in extremal graph theory.
+My committee knows what that means, and hopefully you will too by the end of this.
+
+
+We're going to start by introducing our main characters and their backstories.
+
+3: Basic definitions
+
+	Our graphs will have finitely many vertices, but there are still some very interesting problems in infinite graph theory
+
+	A subgraph is what you'd expect it to be: take some of the vertices from G and some of the edges between those vertices.
+
+4: Example of graph, subgraph, induced graph
+
+	We can pick out the four vertices in the middle and consider this particular subgraph
+
+	This subgraph isn't induced because we've "forgotten" some of its edges
+
+	LEAD IN
+
+		Your intuition might tell you that if a graph has enough going on, then we might expect to see some simple or familiar structure inside of it.
+
+		Any town of sufficient size in the US invariably has a Starbucks in it.
+
+
+		Consider the familiar triangle (gesture to one in the picture)
+
+		CLICK
+
+5: An existence question
+
+	Read question
+
+	Clearly if we include all n choose 2 possible edges we'll have a triangle, so our question has an answer for sure.
+	
+	Say we have five vertices to play with.
+	How many can we get away with before we are forced to draw a triangle?
+	Clearly we can place one edge or two. There's room for three, four, even five.
+
+	(3,4)
+	(4,5)
+	(3,1)
+	(1,2)
+	(2,3)
+	(2,5)
+
+	If you think about it, you can even get six.
+
+	Take your graph with six edges and pull it apart a bit like this. Where could a seventh edge go?
+
+	LEAD IN
+
+		We can generalize this construction to more vertices: put half(ish) one one side and half(ish) on the other and cross it up.
+
+		Can we do better?
+
+6: Guaranteeing the existence of a subgraph
+
+	An old theorem of Willem Mantel says this really is the best we can do.
+
+	It actually says more: that if you have this number of edges then you MUST be one of these so-called complete "bipartite" graphs (I'll define this later)
+
+	What _really_ is a triangle. Clearly it's a lot of things to a lot of people, but let's think of it as three verts with all possible edges.
+	We can clearly generalize this and we get the complete graph.
+
+	CLICK
+
+	If we ask the same question as before and wait about 34 years
+
+	CLICk
+
+	we get a similar answer due to Pal Turan.
+	This bound is sharp and there's a similar construction to the bipartite graphs we saw before. These are called Turan graphs.
+
+	LEAD IN
+
+		What about other graphs? Say you have some graph H
+
+		CLICK
+
+7: What about other graphs?
+
+	ex(n, H) is defined to be the answer to the question "how many edges do you need to guarantee an H?"
+
+	This question sounds really broad - H could be crazy complicated.
+	It turns out, we know quite a lot
+
+	CLICK
+
+	This theorem due to Paul Erdos and Arthur stone gives the (asymptotic) answer in terms of H's chromatic number (I'm not going to get that deep into it)
+
+	The binomial coefficient is quadratic in n, so this theorem says we know the exact asymptotics of the extremal number...
+
+	...unless THIS first term is zero. Then all we know is that we need asymptotically fewer than n^2 edges - but that could be a lot of things.
+
+	CLICK
+
+8: What about other graphs
+
+	these graphs with chromatic number 2 are a lot like that graph we saw when we talked about Mantel's theorem (draw one)
+
+	CLICK
+
+	What kind of graphs are bipartite?
+	Well you have paths (zigzag between parts) and it's not too hard to show that trees are too.
+	It shouldn't be surprising that we know the asymptotics of their extremal numbers
+
+	CLICK
+
+	Cycles are pretty simple-looking, but it turns out that we really only know half of the story here.
+	Erdos gave the upper bound for even cycles (note that odd cycles aren't bipartite)
+	These lower bounds are an old result, but David Conlon recently (a couple months ago) came up with a neat geometric construction for these cycles.
+
+	There are some other bounds for specific classes of graphs 
+
+	CLICK
+
+	(read)
+
+	So it looks like this embedding problem is mostly solved, except for in this one particular class, in which case not a lot is known and it seems hard.
+
+	Well let's ask a different question - maybe there are interesting substructures that don't take the form of a particular fixed graph
+
+	CLICK
+
+9: Larger substructures
+
+	(read)
+
+	CLICK to next
+
+10: Larger substructures
+	
+	Our sports team example motivates the definition of a substructure
+
+	CLICK
+
+	and our delivery service motivates another
+
+	CLICK
+
+11: pictures
+
+	Our sports and delivery questions then amount to the following
+
+	 CLICK
+
+12: Another perspective
+
+
+	(read first three bullets)
+
+	Isolating a vertex doesn't cost us that many edges (n out of n^2), so this doesn't seem like the right question to ask
+
+	This theorem due to Philip Hall gives a necessary condition for the existence of perfect matchings in bipartite graphs
+
+	CLICK
+
+	notice that it doesn't say anything (explicitly) about the number of edges. It focuses on a more local property: the degree of each vertex (in the X part at least)
+
+	CLICK
+
+13: Dirac's theorem
+
+	we can similarly ask how the number of edges affects hamiltonicity (the existence of a hamiltonian cycle)
+
+	if your graph as a leaf, there's only one way out/in, so we can't form a cycle.
+	Again, it doesn't cost us many edges to make this happen
+
+	Like with perfect matchings, we have a sufficient condition for Hamiltonicity, this time due to Gabriel Dirac
+
+	CLICK
+
+	Again, notice that it doesn't have to do with the number of edges, but where they are: we have a condition on how many come from each vertex
+
+	Notice that if a graph on an even number of vertices has a Ham cycle, then it has a perfect matching too: just delete every other edge in the cycle.
+
+	CLICK
+
+	(read last two bullets)
+
+	In short, the Turan problem asks how many edges we need to force a substructure and the Dirac problem asks what min degree we need. Global vs local
+
+	CLICK
+
+14: 
+
+	let's take a look at a counting problem
+
+	CLICK
+
+15: From one to many
+
+	read first bullet
+
+	Well in the 50s and 60s, we learned that probability offers us some pretty powerful tools for counting things, which brings us to one of the most ubiquitous random structures
+
+	CLICK
+
+	Maybe if we consider a random graph, it can tell us things about deterministic ones.
+
+	(read bullet)
+
+	CLICK
+
+	Probably the most basic question we can ask about G(n,p) is how often does it do what we want?
+	Another question - can we coerce it into (usually) doing what we want by choosing p properly?
+
+	(read bullet)
+
+	CLICK
+
+	This magical value of p (which can be a function of n if we want) that convinces G(n,p) to do what we want is called a threshold for the property in question
+
+	Is there even an answer? Maybe no matter how big we make p, there could be a significant chance that G doesn't have our property.
+	Or vice-versa, maybe we can make p tiny and G will likely do what we want.
+
+	CLICK
+
+16: Random graphs
+
+	It turns out that if we're interested in a reasonable property, then there is a threshold for it (Bela Bollobas Andrew Thomason)
+
+	CLICK
+
+	Graph containment is a monotone property, so we can ask Turan-like questions
+
+	CLICK
+
+	(read bullet)
+
+	Let's see if we can use this device to count matchings and cycles
+
+	CLICK
+
+17: intuition from random graphs for matchings and cycles
+
+	it's not too hard to show that if p>1/2, then G is Dirac whp. we can just use Chernoff.
+	Dirac's theorem then says that we must have a cycle.
+
+	But maybe we can use tools like this to count the number of cycles.
+	What does that chernoff argument for Diarcness really say?
+	It's easy to see that the expected degree is >n/2 in this case and Chernoff just says that the degrees concentrate around the expectation.
+
+	Maybe the number of matchings/cycles also concentrate around their means
+
+	CLICK
+
+	The number of potential pm's is the number of ways to partition the vertex set into pairs.
+	Each has n/2 edges, so this is the expected number of PMs
+
+	CLICK
+
+	Similarly, the number of potential cycles is half of the number of ways to cyclically order our vertices.
+	Each has n edges, so this is the expected number of Ham cycles
+
+	Now what of concentration?
+
+	CLICK
+
+	well we always have Markov: the probability that we have too many (ie, more by a larger order of magnitude) goes to zero.
+
+	so "not too many", but what about "enough"?
+
+	CLICK
+
+	Roman Glebov and Michael Krivelevich showed that we do get concentration, but not quite around the mean - just subexponentially close to it.
+	Note that p > 1/2 safely puts us in this regime
+
+	So that about nails it for random graphs, what about deterministic?
+
+	CLICK
+
+18: deterministic matchings and cycles
+
+	It turns out that in Dirac graphs, the probabilistic statement translates to a deterministic one
+
+	This is due to Bill Cuckler and Jeff Kahn.
+
+	CLICK
+
+	The simple counting problem seems pretty solved then, but there are other questions we can ask, like how many edge disjoint cycles are there, or can we cover all edges with cycles?
+	We can also consider directed graphs.
+	These are questions investigated by Bollobas, Alan Frieze, Kuhn, Lo, Osthus, Treglown, Glebov, Krivelevich, Szabo, Asaf
+
+	LEAD IN
+
+		Let's try and motivate some other structures
+
+		CLICK
+
+19: Taking it further - hypergraphs
+
+	(read riddle) Thomas Kirkman
+
+	just read everything
+
+20: defining hypergraphs
+
+	(first bullet)
+
+	A hypergraph naturally generalizes the notion of a graph - we have more options for what an edge can be
+
+	A discerning listener might notice that a hypergraph is "just" a set and a collection of subsets.
+	This is exactly the case and a good argument for why we should care about them
+
+	CLICK
+
+	The Turan question generalizes immediately - how many edges do we need in order to get a particualr subhypergraph
+
+	CLICK
+
+	The Dirac question is maybe a bit more subtle - what do we mean by degree? More on this later
+
+	CLICK
+
+21: Generalizing the substructures
+
+	can we generalize matchings and cycles?
+
+	CLICK
+
+	matchings, perfect or otherwise, seem okay
+
+	But cycles seem more nuanced.
+
+	CLICK
+
+	In a graph we can think of laying out the edges of a cyle "end to end".
+	What does that mean in a hypergraph?
+
+	CLICK
+
+	One way to do seems to be to allow for edges to overlap a bit.
+	Read definition
+
+22: pictures - Hyper, subhyper, matching, cycle
+
+23: 
+
+	0-cycles are perfect matchings (zero overlap means disjoint)
+
+	CLICK
+
+	if we allow for enough overlap, we might have many intersecting edges in a cycle (draw)
+
+	Let's put that aside for now and try to apply our random graph intuition and count how many cycles we expect in a k-uniform hypergraph (each edge is chosen with probability p)
+
+	Enumerate vertices (n!)
+	Choose edges: p^(n/(k-\ell))
+	Reorder each overlap of \ell: \ell !
+	Reorder non-overlap: (k-2\ell)!
+	Overcount: 2n/(k-\ell) ways to get the same cycle
+
+	CLICK
+
+	just like before, we can ask if we deterministically see this expected behavior
+
+24: counting cycles
+
+	It turns out that we get a theorem similar to that of cuckler and kahn: we see the expected number of PMs up to a subexponential factor
+
+	click
+
+	bullet
+
+25: current work
+
+	Joint with Adva Mond, a student of Bela Bollobas at Cambridge, we have a probabilistic argument for extending this theorem to \ell cycles for all \ell < k-1
+
+	CLICK
+
+	Future work could include extending this to tight cycles \ell = k-1. It's an artifact of our proof that it doesn't work here.
+
+	Edge-disjoint cycles, covering. Asaf has papers on this
+
+26: 
+
+	So far we've been considering extremal problems that ask under what circumstances a substructure appears.
+	But we can ask other questions as well
+
+27: 
+
+	read the problem
+
+	CLICK
+
+	explain the solution briefly
+
+	Can we even do this?	
+	In the same book, Lovasz states an unpublished theorem of Gallai (again as an exercise)
+
+	CLICK
+
+28:
+
+	We can use this theorem to show that our solution makes sense (I won't do it here, there's a simple construction)
+
+	CLICK
+
+	(read bullet)
+
+	This is another type of extremal question: finding a large substructure
+
+29:
+
+	naturally, we can ask about odd subgraphs and Adam Scott has a theorem on this
+
+	CLICK
+
+	notice that we don't get a linearly-sized subgraph - just a bit off
+
+	CLICK
+
+	He conjectures however that we get the same statement for odd graphs
+
+	LEAD IN
+
+		what justifies this conjecture? The random intuition
+
+		CLICK
+
+30:
+
+	(read theorem)
+
+	it's true for random graphs whp
+
+	CLICK
+
+	in fact, he conjectures that there's nothing special about being even or odd: that we should get a similar statement for any modulus
+
+31:
+
+	We showed that this is mostly true and that it works for any remainder
+
+32:
+	
+	roughly, we turn this into a problem of linear algebra and random matrices: the adjacency matrix of a random graph is a random (symmetric) matrix
+
+	CLICK
+
+	we can use familiar matrix algebra to extract graph theoretic information: degrees are seen in M1
+
+	CLICK
+
+	An induced subgraph corresponds to a submatrix, so our problem becomes trying to find a big submatrix with a specific property
+
+33:
+	
+	Each coordinate of B1 is a sum of Bernoulli RVs, so let's think about how this behaves.
+	Let's suppose those RVs are independent for now.
+
+	CLICK
+
+	We can write the probability of this sum hitting some value as the expectation of a delta function
+
+	CLICK
+
+	Then we can expand this into its Fourier series
+
+	CLICK
+
+	apply independence
+
+	CLICK
+
+	and evaluate
+
+	CLICK
+
+34:
+
+	The first term in this sum is just 1/q and we can bound the rest
+
+	CLICK
+
+	A cute calculus trick that comes from writing sine as an integral gives us an exponential and UNIFORM bound on that cosine
+
+	CLICK
+
+	And this tells us that the probability differs from 1/q by an exponentially (in the number of terms) small amount
+
+	CLICK
+
+35:
+
+	So the distribution is (asymptotically) uniform!
+
+	CLICK
+
+	If we have a matrix with iid entries, then we can use independence of rows to get a similar statement for matrices - the distribution is just about uniform
+
+	CLICK
+
+36:
+
+	one issue: the adjacency matrix is symmetric
+
+	CLICK
+
+	A similar but more careful argument shows that we get a similar statement for symmetric matrices
+
+	We have to be a bit careful though: notice that the sum of the entries in M1 is the sum of all entries in M, which has to be even by symmetry.
+
+37:
+
+	The rest of the proof is just an application of the probabilistic method
+
+	(read cheb)
+
+	CLICK
+
+	We consider the random number of good submatrics: we'll pin down c later
+
+	CLICK
+
+	If we can choose c_q so that Var = o(E^2), then by Cheb there must be a good submatrix whp
+
+38:
+
+	remember that Gallai's theorem is also a statement about partitioning
+
+	CLICK
+
+	can we generalize this too?
+
+39:
+
+	Scott says that we definitely can for odd subgraphs (note that the number of odd vertices is always even, so this restriction on components is obvious)
+
+	But how big can this partition be?
+
+	CLICK
+
+	In the random case, scott showed that we can get away with just three parts for odd subgraphs
+
+	CLICK
+
+	and he conjectures that we can get constantly many parts for any modulus and remainder
+
+	CLICK
+
+40:
+
+	and this is exactly what we show: that we can get q+1 parts
+
+	CLICK
+
+	the proof is just another probabilistic argument

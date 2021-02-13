@@ -3,6 +3,7 @@
 \usepackage{tikz} %This package offers the ability to draw pictures
 \usepackage{amsthm}
 \usepackage{hyperref}
+\usepackage{lmodern}
 
 
 \theoremstyle{plain}
@@ -19,7 +20,7 @@
 
 
 \newcommand{\naturals}{\mathbb{N}}
-\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\complex}{\mathbb{C}}
 \newcommand{\reals}{\mathbb{R}}
 \newcommand{\exreals}{\overline{\mathbb{R}}}
@@ -40,6 +41,8 @@
 \newcommand{\esssup}{\text{ess sup }}
 \newcommand{\essinf}{\text{ess inf }}
 \newcommand{\affine}{\mathbb{A}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\text{Var}}
 
 
 \title{Finding and Counting Substructures in Graphs and Hypergraphs}
@@ -108,9 +111,318 @@
 
 			\begin{conjecture}[A. Scott - 2001]
 				There exists some constant $c>0$ such that every graph $G(V, E)$ on $n$ vertices, none of which are isolated, contains a set $W\subseteq V(G)$ such that $|W|\geq cn$ and $G[W]$ has all degrees odd.
-			\end{conjecture}
-
+			\end{conjecture}\pause
 		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{History and Motivation}
+		\begin{definition}
+			The \textbf{Erd\H{o}s-Renyi random graph}, $\mathcal{G}(n, p)$, is the random variable that outputs a graph on $n$ vertices, any two of which are independently connected with probability $p$.
+		\end{definition}\pause
+
+		\begin{theorem}[A. Scott - 1992]
+			Let $G\sim \mathcal{G}(n, 1/2)$.
+			Then with high probability (that is, with probability $1-o(1)$), $G$ has an induced subgraph on at least $0.7729n$ vertices with all degrees odd.
+		\end{theorem}
+	\end{frame}
+
+
+	\begin{frame}{Other Moduli and Remainders}
+		\begin{conjecture}[A. Scott - 2001]
+			For any positive integer $q$ at least 2, there exists a constant $c_q$ so that every graph on $n$ vertices without isolated vertices has an induced subgraph on at least $c_qn$ vertices with all degrees $1\pmod q$.\pause
+		\end{conjecture}
+		% \begin{definition}
+		% 	Let $q$ be a positive integer at least 2 and let $0\leq r<q$ be an integer.
+		% 	If $G$ is a graph, we write $f(G, r, q)$ for the maximum order of an induced subgraph of $G$ with all degrees $r\pmod q$.
+		% \end{definition}
+		\begin{theorem}[A. Ferber, H., M. Krivelevich - 2020+]
+			Let $q\geq 2$ and let $r$ be an integer.
+			Then there exists a constant $c_q$ such that, with high probability, the random graph $G\sim \mathcal{G}(n, 1/2)$ has an induced subgraph on at least $c_qn$ vertices wijth all degrees $r\pmod q$.
+		\end{theorem}
+	\end{frame}
+
+
+	\begin{frame}{Key Idea Behind Proof}
+		\begin{itemize}
+			\item If $G\sim \mathcal{G}(n, 1/2)$, then its adjacency matrix $M$ ($M_{ij} = 1$ if and only vertices $i$ and $j$ are connected and $M_{ij}=0$ otherwise) is a random symmetric $n\times n$ matrix whose above-diagonal entries are iid $\Bern(1/2)$ random variables.
+
+			\pause
+
+			\item In this case, the $i$-th entry of $M\boldsymbol{1}$ is the degree of vertex $i$ in $G$, where $\boldsymbol{1}$ is the length $n$ all-1 vector.
+
+			\pause
+
+			\begin{observation}
+				$G$ contains a subgraph with all degrees $r\pmod q$ if and only if its adjacency matrix contains a principal submatrix $B$ satisfying $B\boldsymbol{1} \equiv r\boldsymbol{1}\pmod q$.
+			\end{observation}
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{A Useful Computation}
+		Fix a positive integer $q\geq 2$ and let $r$ be an integer.
+		Let $x_1, \ldots, x_t$ be iid $\Bern(1/2)$ random variables.
+
+		\pause
+
+		\begin{align*}
+			\Pr[x_1 + \cdots + x_t \equiv r] &= \E[\delta_0(x_1 + \cdots + x_t - r)]\\
+			\uncover<3->{&= \frac{1}{q}\sum_{\ell\in \Z_q}\E\exp\left[\frac{2\pi i\ell}{q}(x_1 + \cdots  + x_t - r) \right]\\}
+			\uncover<4->{&=\frac{1}{q}\sum_{\ell\in \Z_q}e^{-2\pi ir \ell/q}\prod_{j=1}^t\E e^{2\pi i \ell x_j/q}\\}
+			\uncover<5->{&= \frac{1}{q}\sum_{\ell\in \Z_q}e^{-2\pi ir \ell/q}\left(\frac{1+e^{2\pi i\ell/q}}{2}\right)^t.}
+		\end{align*}
+	\end{frame}
+
+
+	\begin{frame}{A Useful Computation}
+		\begin{itemize}
+			\item Isolate the $\ell \equiv 0$ term, apply the triangle inequality and Euler's identity.
+
+			\pause
+
+			\begin{align*}
+				\left|\Pr[x_1 + \cdots + x_t \equiv r] - \frac{1}{q}\right|\leq \frac{1}{q}\sum_{\ell = 1}^{q-1}|\cos(\pi \ell/q)|^t.
+			\end{align*}
+
+			\pause
+
+			\item Calculus trick: when $|x|\leq \pi/2$, $|\sin x| \geq (2/\pi)|x|$.
+
+			\pause
+
+			\item From this, it follows that $|\cos(\pi \ell/q)|\leq e^{-2/q^2}$ for all $\ell = 1, \ldots, q-1$.
+
+			\pause
+
+			\[
+				\left|\Pr[x_1 + \cdots + x_t \equiv r] - \frac{1}{q}\right|\leq \frac{q-1}{q}e^{-2t/q^2}.
+			\]
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{A Useful Computation}
+		\begin{itemize}
+			\item The distribution of a random Bernoulli sum modulo $q$ is asymptotically uniform!
+
+			\pause
+
+			\item By independence we have.
+
+			\begin{lemma}
+				Let $M$ be an $s\times t$ matrix whose entries are iid $\Bern(1/2)$ random variables.
+				Then for any $v\in \Z_q^s$,
+				\[
+					\Pr[M\boldsymbol{1} \equiv v] = \frac{1}{q^s}\bigg(1 + O\left(e^{-2t/q^2}\right)\bigg)^s.
+				\]
+			\end{lemma}	
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Symmetric Case}
+		\begin{itemize}
+			\item But the adjacency matrix is symmetric!
+
+			\pause
+
+			\item A similar, but more technical argument handles the symmetric case.
+
+			\pause
+
+			\begin{lemma}
+				Let $M$ be an $m\times m$ symmetric matrix whose diagonal is zero and whose entries above the diagonal are iid $\Bern(1/2)$ random variables.
+				Then for any $v\in \Z_q^m$,
+				\[
+					\Pr[M\boldsymbol{1} \equiv v] = \begin{cases}
+						\frac{1}{q^m}(1 + O(e^{-m/q^2})) & \text{ if $q$ is odd}\\
+						\frac{2}{q^m}(1 + O(e^{-m/q^2})) & \text{ if $q$ is even and $\sum v_i$ is even}\\
+						0 & \text{ if $q$ is even and $\sum v_i$ is odd}.
+					\end{cases}
+				\]
+			\end{lemma}
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Parity?}
+		\begin{itemize}
+			\item We have
+			\[
+				\sum_i (M\boldsymbol{1})_i = \sum_{i,j} M_{ij} = 2\sum_{i<j}M_{ij},
+			\]
+			which is always even modulo $q$ if $q$ is even and can be any residue modulo odd $q$.
+
+			\pause
+
+			\item The symmetric lemma then says that the distribution of $M\boldsymbol{1}\pmod q$ is asymptotically uniform over all ``feasible'' values.
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Proof (Sketch) of Theorem}
+		\begin{itemize}
+			\begin{theorem}[Chebyshev's Inequality]
+				Let $X$ be a nonnegative integer-valued random variable with finite variance.
+				Then
+				\[
+					\Pr[X > 0] \geq 1 - \frac{\Var[X]}{(\E[X])^2}.
+				\]
+
+			\end{theorem}
+
+			\pause
+
+			\item Let $k = c_qn$ for some $c_q>0$ and let $X_k$ be the number of $k\times k$ principal submatrices $B$ of the adjacency matrix of $G$ satisfying $B\boldsymbol{1} \equiv r\boldsymbol{1} \pmod {q}$.
+
+			\pause
+
+			\item Show that $c_q$ can be chosen so that $\Var[X_k] = o(E[X_k]^2)$.
+			Then $G$ has an induced subgraph of size $c_qn$ with high probability.
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Proof (Sketch) of Theorem}
+		Maybe have some of the calculations and that overlap diagram.	
+	\end{frame}
+
+
+	\begin{frame}
+		State theorem for arbitrary distribution of residues mod $q$.	
+	\end{frame}
+
+
+\section{A Counting Problem}
+
+	\begin{frame}{Packing}
+		\begin{itemize}
+			\item Recall Gallai's result on even subgraphs.
+			\begin{theorem}[L. Lov\'asz, T. Gallai - 1979]
+				Let $G = (V, E)$ be any graph.
+				Then $G$ admits a partitioning of its vertex set into two parts, $V = V_1 \cup V_2$, so that each vertex in $G[V_1]$ and each vertex in $G[V_2]$ has even degree.
+				In particular, any graph on $n$ vertices has an even subgraph of order at least $n/2$.
+			\end{theorem}\pause
+
+			\item What else can we say about partitions and remainders?
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Packing Theorems}
+		\begin{theorem}[A. Scott - 2001]
+			Let $G$ be a graph. Then $G$ admits a partition into odd subgraphs if and only if every component of $G$ has even order.
+		\end{theorem}
+
+		\pause
+
+		\begin{theorem}[A. Scott - 2001]
+			With high probability, $G\sim \mathcal{G}(n, p)$ for $n$ even admits a partition into three odd subgraphs.
+		\end{theorem}
+
+		\pause
+
+		\begin{conjecture}[A. Scott - 2001]
+			For $q>1$ and $r \leq q$, there exists a constant $c_q$ such that $G\sim \mathcal{G}(n, p)$ admits a partition into $c_q$ classes such that the degrees in each class are congruent to $r\pmod q$ with high probability.
+		\end{conjecture}
+	\end{frame}
+
+
+	\begin{frame}{Packing Theorems}
+		\begin{theorem}[A. Ferber, H., M. Krivelevich]
+			For $q>1$ and $r\leq q$, $G\sim \mathcal{G}(n, 1/2)$ admits a partition into $q+1$ classes such that the degrees in each class are congruent to $r\pmod q$ with high probability.
+		\end{theorem}
+	\end{frame}
+
+
+	\begin{frame}{Sketch of Packing Proof}
+		Explain that it's just another second moment argument. Maybe some calculations, diagrams. Explain need for ``both ways'' lemma.
+	\end{frame}
+
+
+\section{Another Counting Problem}
+
+	\begin{frame}{Definitions}
+		\begin{definition}
+			Let $G = (V, E)$ be a graph.
+			A subset of edges $\mathcal{M}\subseteq E$ is called a \textbf{matching} if its edges are vertex-disjoint.
+			The matching $\mathcal{M}$ is \textbf{perfect} if the vertices that comprise it cover all of $V$.
+		\end{definition}
+
+		\pause
+
+		\begin{definition}
+			Let $G = (V, E)$ be a graph and let $\mathcal{C}$ be a sequence of edges.
+			Then $\mathcal{C}$ is a...
+			\begin{itemize}
+				\item ...\textbf{path} if it joins a sequence of distinct vertices.
+				\pause
+				\item ...\textbf{cycle} if it joints a sequence of vertices $v_1, v_2, \ldots, v_k, v_1$.
+				\pause
+				\item ...\textbf{Hamiltonian cycle} if it is a cycle that visits every vertex in $G$ exactly once.
+			\end{itemize}
+		\end{definition}
+	\end{frame}
+
+
+	\begin{frame}{History and Motivation}
+		\begin{itemize}
+			\item When does a graph have Hamiltonian a cycle (when is it \textbf{Hamiltonian})?
+
+			\pause
+
+			\item For any graph $G$, let $\delta(G)$ denote the minimum degree of any vertex.
+
+			\pause
+
+			\begin{theorem}[G. Dirac - 1952]
+				A graph on $n\geq 3$ vertices is Hamiltonian if $\delta(G)\geq n/2$.
+			\end{theorem}
+
+			\pause
+
+			\item A graph is Hamiltonian if it is sufficiently dense.
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}{Counting Hamiltonian Cycles in Dense Graphs - Intuition}
+		\begin{itemize}
+			\item The expected number of Hamiltonian cycles in $G\sim \mathcal{G}(n, p)$ is
+			\[
+			\frac{1}{2}(n-1)!p^n.
+			\]
+
+			\pause
+
+			\item Fix $\gamma>0$.
+			If $p>(1/2+\gamma)$, then 
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{Cuckler-Kahn}
+		
+	\end{frame}
+
+
+	\begin{frame}{Introduce hypergraphs and notion of cycle}
+		
+	\end{frame}
+
+
+	\begin{frame}{Hypergraph theorems}
+		
+	\end{frame}
+
+
+	\begin{frame}{Our theorem}
+		
+	\end{frame}
+
+
+	\begin{frame}{Proof sketch}
+		
 	\end{frame}
 
 

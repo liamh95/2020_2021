@@ -1,0 +1,166 @@
+\documentclass[11pt,letterpaper]{report}
+\usepackage{amssymb,amsfonts,color,graphicx,amsmath,enumerate}
+\usepackage{amsthm}
+
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\rank}{\text{rank}}
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+\voffset=-3cm
+\hoffset=-2.25cm
+\textheight=24cm
+\textwidth=17.25cm
+\addtolength{\jot}{8pt}
+\linespread{1.3}
+
+\begin{document}
+\noindent{\em Liam Hardiman\hfill{February 1, 2021} }
+\begin{center}
+{\bf \Large Math 274 - Homework 1}
+\vspace{0.2cm}
+\hrule
+\end{center}
+
+\noindent\textbf{Problem 1. }
+Let $\{(A_i, B_i): 1\leq i \leq m\}$ be a family of pairs of subsets of the set of integers such that $|A_i| = k$ for all $i$, $|B_i| = \ell$ for all $i$,
+$A_i\cap B_i = \emptyset$ for all $i$, and $(A_i\cap B_j)\cup (A_j\cap B_i) \neq \emptyset$ for all $i\neq j$.
+Show that $m\leq (k+\ell)^{k+\ell}/(k^k\ell^\ell)$.
+
+\begin{proof}
+  Let $U$ be the union of the $A_i$ and the $B_i$ for all $i$.
+  We randomly sample a set $X\subseteq U$ by including each $x\in U$ independently with probability $p$, to be determined later.
+  Now let $E_i$ be the event that $X$ contains all of $A_i$ and contains no element of $B_i$.
+  Note that these events are disjoint.
+  Indeed, if $E_i$ and $E_j$ both occur, then $X$ contains both $A_i$ and $A_j$ and contains nothing from $B_i$ or $B_j$.
+  But at least one of $A_i\cap B_j$ and $A_j\cap B_i$ is nonempty, so this cannot happen.\\
+
+  Now since $|A_i| = k$ and $|B_i| = \ell$, we have $\Pr[E_i] = p^k(1-p)^\ell$ for all $i$.
+  From this we deduce
+  \[
+  1 \geq Pr[\cup_{i=1}^mE_i] = \sum_{i=1}^m\Pr[E_i] = mp^k(1-p)^\ell,
+  \]
+  so $m \leq p^{-k}(1-p)^{-\ell}$.
+  This function of $p$ attains its minimum at $p = \frac{k}{k+\ell}$, which gives the desired bound.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Problem 2. }
+Suppose there are $m$ red clubs $R_1, \ldots, R_m$ and $m$ blue clubs $B_1, \ldots, B_m$ in a town of $n$ citizens.
+Define the $m\times m$ matrix $M$ as follows
+\[
+M_{ij} = |A_i\cap B_j|.
+\]
+Show that if $M$ is non-singular, then $m\leq n$.
+\begin{proof}
+  Identify the citizens with the set $[n]$ and each club $R_i$, $B_i$ with its indicator vector in $\reals ^n$.
+  If we let $R$ and $B$ be the $m\times n$ matrices whose rows are the $R_i$ and $B_i$, respectively, then $M = RB^T$.
+  Since $M$ is nonsingular, its rank is $m$ and we have
+  \begin{align*}
+    m &= \rank(M)\\
+    &= \rank(RB^T)\\
+    &\leq \min(\rank(R), \rank(B))\\
+    &\leq n.
+  \end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Problem 3. }
+Let $p$ be a prime.
+Let $A\subseteq \integers_p$ be a set such that $|A| < p^{2/3}$.
+Prove that there are $x,y\in \integers_p$ such that $A\cap (A+x)\cap (A+y) = \emptyset$.
+\begin{proof}
+  We pick $x$ and $y$ uniformly and independently at random from $\integers_p$.
+  Notice that $a\in A\cap (A+x)\cap (A+y)$ if and only if $a -a_1 = x$ and $a-a_2 = y$ for some $a_1, a_2$ in $A$.
+  With this in mind, consider the (directed) (multi) graph whose vertex set is $A$, where we draw a red edge from $a$ to $a'$ if $a'-a = x$ and a blue edge if $a'-a = y$.
+  Now $a$ is in $A\cap (A+x)\cap (A+y)$ if and only if it has an outward-directed red edge and an outward-directed blue edge.
+  There are $3\binom{|A|}{3}$ ways to choose three elements of $A$ with one chosen ``center''.
+  Since $x$ and $y$ were chosen uniformly at random, the probability that any particular (ordered) pair is a red edge is $1/p$, and the same holds for blue edges.
+  Thus, the probability that any ``centered'' triple has a red edge and a blue edge emanating from its center is $2/p^2$.
+  The expected number of such properly colored triples is then
+  \[
+  \frac{6}{p^2}\binom{|A|}{3} \leq |A|^3/p^2.
+  \]
+  If this quantity is less than 1, then there is a pair $(x,y)$ that yields no good triples, so the set $A\cap (A+x)\cap (A+y)$ is empty.
+  This occurs when $A < p^{2/3}$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Problem 5. }
+Let $m(n, s)$ denote the maximum number of points in $\reals^n$ such that their pairwise distances take at most $s$ values. Prove that
+\[
+\binom{n+1}{s} \leq m(n,s) \leq \binom{n+s+1}{s}.
+\]
+\begin{proof}
+  We start with the upper bound.
+  Suppose the pairwise distances among the points $P^{(1)}, \ldots, P^{(m)}$ in $\reals^n$ take at most $s$ values, say $d_1, \ldots, d_s$.
+  Consider the polynomials $f_1, \ldots, f_m$ in $x = (x_1, \ldots, x_n)$ given by
+  \[
+  f_i(x) = \left(\|x-P^{(i)}\|^2 - d_1^2\right)\cdots \left(\|x-P^{(i)}\|^2-d_s^2\right).
+  \]
+  These polynomials are linearly independent since $f_i(P^{(j)}) = c\delta_{ij}$, where $c = (-1)^s(d_1\cdots d_s)^2$.
+  We can then upper bound $m$ by the dimension of any subspace that the polynomials $f_1, \ldots, f_m$ live in.
+  While each polynomial here has degree $2s$, expanding the expression $\|x-P^{(i)}\|^2$ reveals that it can be thought of as a polynomial of degree at most $s$ in the $(n+1)$ variables $x_1, \ldots, x_n$ and $\sum_{k=1}^nx_k^2$.
+  This space has dimension $\binom{n+s+1}{s}$, the desired upper bound.\\
+
+  As for the lower bound, consider a regular $n$ simplex in $\reals^n$.
+  For concreteness, label its vertices $v_1, \ldots, v_{n+1}$.
+  Consider the set of centers of mass of every subset of $s$ vertices, that is,
+  \[
+  S = \left\{\frac{1}{s}\sum_{j=1}^sv_{i_j}: \{v_{i_1}, \ldots, v_{i_s}\}\subseteq \{v_1, \ldots, v_{n+1}\}\right\}.
+  \]
+  We claim that $S$ is a set of $\binom{n+1}{s}$ points whose pairwise distances take at most $s$ values.
+  Indeed, suppose two collections of $s$ vertices, $v_{i_1}, \ldots, v_{i_s}$ and $v_{j_1}, \ldots, v_{j_s}$ have the same center of mass.
+  Then
+  \[
+  \sum_{k=1}^sv_{i_k} = \sum_{k=1}^sv_{j_k}.
+  \]
+  By the affine independence of the vertices of the simplex, this implies that these two subsets are in fact identical, hence, $S$ consists of $\binom{n+1}{s}$ points.
+  Next, we claim that the distance between the centers of mass of $S_i = \{v_{i_1}, \ldots, v_{i_s}\}$ and $S_j = \{v_{j_1}, \ldots, v_{j_s}\}$ is determined by the size of $|S_i\cap S_j|$.
+  Suppose the size of this intersection is $t$ and that the first $t$ elements of $S_i$ and $S_j$ are the same.
+  The squared distance between their centers of mass is then (up to a factor of  $1/s^2$)
+  \begin{align*}
+    \left\|\sum_{k=t+1}^sv_{i_k} - \sum_{k=t+1}^sv_{j_k}\right\|^2 &= \sum_{k=t+1}^s\|v_{i_k}-v_{j_k}\|^2 + 2\sum_{t<k<\ell\leq s}\langle (v_{i_k} - v_{j_k}), (v_{i_\ell} - v_{j_\ell})\rangle.
+  \end{align*}
+  Since the vertices of the simplex are equidistant from one another and any two pairs vertices have the same inner product, this quantity is independent of which subsets of $s$ vertices with $t$ common vertices we pick.
+\end{proof}
+
+\[
+  F(s) = \int_0^\infty f(t)e^{-st}\ dt = \oint f\cdot dr = \det(A-\lambda I) = p(\lambda) = e^{\Theta n}
+\]
+
+\end{document}

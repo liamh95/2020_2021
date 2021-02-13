@@ -1,0 +1,46 @@
+\documentclass[11pt,letterpaper]{report}
+\usepackage{amssymb,amsfonts,color,graphicx,amsmath,enumerate}
+\usepackage{amsthm}
+
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\rank}{\text{rank}}
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+\voffset=-3cm
+\hoffset=-2.25cm
+\textheight=24cm
+\textwidth=17.25cm
+\addtolength{\jot}{8pt}
+\linespread{1.3}
+
+\begin{document}
+\noindent{\em Liam Hardiman\hfill{February 15, 2021} }
+\begin{center}
+{\bf \Large Math 274 - Homework 2}
+\vspace{0.2cm}
+\hrule
+\end{center}
+
+\noindent\textbf{Problem 1. }
+Let $v_1 = (x_1, y_1), \ldots, v_n = (x_n, y_n)$ be $n$ vectors in $\integers^2$, where each $x_i$ and each $y_i$ is a positive integer that does not exceed $\frac{2^{n/2}}{10\sqrt{n}}$.
+Show that there exist two disjoint nonempty subsets $I, J\subseteq [n]$ such that $\sum_{i\in I}v_i = \sum_{j\in J}v_j$.
+
+\begin{proof}
+    Consider the random sum $X = \sum_{i=1}^n \epsilon_iv_i$ where each $\epsilon_i$ is an iid Bernoulli random variable with success probability $1/2$.
+    We'll show that a sizeable proportion of the possible $X_i$ live in an axis-aligned box centered about the mean of $X$.
+    If the size of this box is smaller than the number of $\epsilon_i$'s that 
+\end{proof}
+
+\end{document}
