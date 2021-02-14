@@ -38,15 +38,20 @@ Let $v_1 = (x_1, y_1), \ldots, v_n = (x_n, y_n)$ be $n$ vectors in $\integers^2$
 Show that there exist two disjoint nonempty subsets $I, J\subseteq [n]$ such that $\sum_{i\in I}v_i = \sum_{j\in J}v_j$.
 
 \begin{proof}
-    Consider the random sum $X = \sum_{i=1}^n \epsilon_iv_i$ where each $\epsilon_i$ is an iid Bernoulli random variable with success probability $1/2$.
-    We'll show that a sizeable proportion of the possible $X_i$ live in an axis-aligned box centered about the mean of $X$.
-    If the size of this box is smaller than the number of assignments of the $\epsilon_i$'s that make $X$ land in this box, then there must be two assignments of the $\epsilon_i$'s that give the same realization of $X$.\\
+    Consider the random sum $V = (X, Y) = \sum_{i=1}^n \epsilon_iv_i$ where each $\epsilon_i$ is an iid Bernoulli random variable with success probability $1/2$.
+    We'll show that a sizeable proportion of the possible $V$ live in an axis-aligned box centered about the mean of $V$.
+    If the size of this box is smaller than the number of assignments of the $\epsilon_i$'s that make $V$ land in this box, then there must be two assignments of the $\epsilon_i$'s that give the same realization of $V$.\\
 
-    Since the $x$-coordinate of $X$ is a sum of independent scaled Bernoulli random variables, its variance is easily computed:
+    Since $X$ is a sum of independent scaled Bernoulli random variables, its variance is easily computed:
     \[
-        \sum_{i=1}^nx_i^2\cdot \Var[\epsilon_i] \leq \frac{2^n}{400}.
+        \Var[X] = \sum_{i=1}^nx_i^2\cdot \Var[\epsilon_i] \leq \frac{2^n}{400}.
     \]
     Note that the $y$-coordinate has the same variance.
+    Now by Chebyshev we have
+    \[\Pr\left[ \left|X - \frac{2^n}{400}\right| \leq t\right] \geq 1-\frac{\Var[X]}{t^2},
+    \]
+    and the same inequality holds for $Y$.
+    If we choose $t$ so that both of these probabilities are at least $3/4$, then $V$ will leave in an axis-aligned box centered at $\E
 
 \end{proof}
 
