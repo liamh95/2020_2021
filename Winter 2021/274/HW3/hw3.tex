@@ -1,0 +1,115 @@
+\documentclass[11pt,letterpaper]{report}
+\usepackage{amssymb,amsfonts,color,graphicx,amsmath,enumerate}
+\usepackage{amsthm}
+
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\ind}{\mathbbm{1}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\E}{\mathbb{E}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+\voffset=-3cm
+\hoffset=-2.25cm
+\textheight=24cm
+\textwidth=17.25cm
+\addtolength{\jot}{8pt}
+\linespread{1.3}
+
+\begin{document}
+\noindent{\em Liam Hardiman\hfill{March 20, 2021} }
+\begin{center}
+{\bf \Large Math 274 - Homework 3}
+\vspace{0.2cm}
+\hrule
+\end{center}
+
+\noindent\textbf{Problem 1. }
+Prove that for any positive integer $k>1$ there is a $c = c(k)$ so that for any collection of subsets $A_1, \ldots, A_k\subseteq \{0, 1\}^n$ that that satisfy $|A_i| \geq 2^n/k$ for all $i$, there are points $v_i\in A_i$ such that any pair of points $v_i, v_j$, $i\neq j$, differ in at most $c\sqrt{n}$ coordinates.
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Problem 2. }
+Prove that if $M$ is an $n\times n$ matrix over some finite field $\field$ with $per(M)\neq 0$, then for every vector $b\in \field^n$ there exists $x\in \{0, 1\}^n$ for which every coordinate $i$ in $Mx$ is distinct from $b_i$.
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Problem 3. }
+Let $H = (V, E)$ be a hypergraph where each edge is of size $t$ and each vertex has degree at most $t$.
+Show that
+\[
+    disc(H) = O(\sqrt{t\log t}).
+\]
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Problem 4. }
+Fix $n\in \naturals$.
+We say that $P(n)$ is true if for any $a_1, \ldots, a_{2n-1}\in \integers$, there is an $I\subseteq [2n-1]$ with $\sum_{i\in I}a_i \equiv 0 \pmod{n}$ and $|I| = n$.
+Show that if $P(n)$ and $P(m)$ are true, then so is $P(nm)$.
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Problem 5. }
+A 1-factorization in a hypergraph $H = (V,E)$ is a collection of edge-disjoint perfect matchings that cover all the edges of $H$.
+Let $K_n^k$ denote the complete $k$-uniform hypergraph on $n$ vertices.
+Our goal is to prove the following theorem.
+\begin{theorem}
+    Let $k$ and $n$ be two positive integers for which $n$ is divisible by $k$.
+    Then the complete $k$-uniform hypergraph on $n$ vertices admits a 1-factorization.
+\end{theorem}
+
+\begin{enumerate}[(a)]
+    \item Prove the following lemma.
+    \begin{lemma}
+        For any real $m\times n$ matrix $M$ with integer row and column sums, there is an integer $m\times n$ matrix $M'$ having the same row and column sums as $M$ and satisfying
+        \[
+            |m_{ij}-m'_{ij}|<1,\quad \forall i,j.
+        \]
+    \end{lemma}
+\end{enumerate}
+
+
+\end{document}
