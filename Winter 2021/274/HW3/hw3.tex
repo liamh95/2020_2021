@@ -43,7 +43,33 @@ Prove that for any positive integer $k>1$ there is a $c = c(k)$ so that for any 
 
 
 
+\begin{proof}
+    Recall the following corollary to Azuma's inequality.
+    \begin{theorem}\label{thm: Ham}
+        Suppose $\epsilon$ and $\lambda$ are positive real numbers satisfying $e^{-\lambda^2/2} = \epsilon$.
+        Then for any $A\subseteq \{0,1\}^n$ of size at least $\epsilon\cdot 2^n$, we have
+        \[
+            |B(A, 2\lambda \sqrt{n})| \geq (1-\epsilon)2^n,
+        \]
+    \end{theorem}
+    where $B(S, r)$ is the set of all strings in $\{0,1\}^n$ with Hamming distance at most $r$ from some string in $S$.
+    From this we deduce that $|B(A_j, 2\lambda \sqrt{n})| \geq (1-1/k)2^n$ for all $j$, where $\lambda = \sqrt{2\log k}$.\\
 
+    We start by showing that $S_1 = \cap_{j\geq 2} B(A_j, 2\lambda \sqrt{n})$ is nonempty (and is, in fact, quite large).
+    From the above discussion and a simple union bound we deduce the following.
+    \[
+        \left|\bigcup_{j\geq 2}B(A_j, 2\lambda \sqrt{n})^c\right| \leq \sum_{j\geq 2}|B(A_j, 2\lambda \sqrt{n})^c| \leq (1-1/k)2^n.
+    \]
+    Hence, $|S_1| \geq 2^n/k$ and we can again apply Theorem \ref{thm: Ham} to obtain $|B(S_1, 2\lambda \sqrt{n})| \geq (1-1/k)2^n$.
+    Since $|A_1| = 2^n/k$, if $A_1$ and $B(S_1, 2\lambda \sqrt{n})$ do not intersect, then $A_1^C = B(S_1, 2\lambda\sqrt{n})$ and then $A_1$ and $B(S_1, 2\lambda\sqrt{n}+1)$ intersect.\\
+
+    By our definition of $S_1$, there is then some $v_1$ in $A_1$ and some $v$ in $\cap_{j\geq 2}B(A_j, 2\lambda \sqrt{n})$ so that $d(v_1, v) \leq 4\lambda \sqrt{n}$.
+    Finally, we may choose $v_j$ in $A_j$ for $j\geq 2$ so that $d(v_j, v)\leq 2\lambda\sqrt{n}$ and
+    \[
+        d(v_i, v_j) \leq d(v_i, v) + d(v_j, v) \leq 6\lambda \sqrt{n}
+    \]
+    for all $i\neq j$.
+\end{proof}
 
 
 
@@ -54,7 +80,19 @@ Prove that for any positive integer $k>1$ there is a $c = c(k)$ so that for any 
 Prove that if $M$ is an $n\times n$ matrix over some finite field $\field$ with $per(M)\neq 0$, then for every vector $b\in \field^n$ there exists $x\in \{0, 1\}^n$ for which every coordinate $i$ in $Mx$ is distinct from $b_i$.
 
 
-
+\begin{proof}
+    For each $b\in \field^n$ consider the polynomial $f_b: \field^n\to \field$ given by
+    \[
+        f_b(x) = \prod_{i=1}^n((Mx)_i - b_i) = \prod_{i=1}^n\left(\sum_{j=1}^nM_{ij}x_j - b_i\right).
+    \]
+    The degree of $f_b$ is $n$ and the coefficient of the term $x_1\cdots x_n$ is $per(M)$.
+    To see this, note that we obtain this coefficient by summing over all possible ways to pick $A_{ij}x_j$ exactly once from each of the $n$ factors in the product that defines $f_b$.
+    The desired coefficient is then
+    \[
+        \sum_{\sigma \in S_n}\prod_{j=1}^nM_{j\sigma(j)} = perm(M).
+    \]
+    Since the coefficient of $x_1^1\cdots x_n^1$ is nonzero and $|\{0,1\}| = 2$, there is an $x\in \{0,1\}^n$ such that $f_b(x) \neq 0$, which corresponds to a $0/1$ vector for which $M_x$ differs from $b$ in every coordinate.
+\end{proof}
 
 
 
@@ -69,7 +107,9 @@ Show that
     disc(H) = O(\sqrt{t\log t}).
 \]
 
-
+\begin{proof}
+    
+\end{proof}
 
 
 
